@@ -84,4 +84,5 @@ active proctype controller()
 }*/
 
 /*Whenever the cabin is moving the door must be closed.*/
+
 ltl p2 {[]( (controller@ismoving -> !opendoor))}
