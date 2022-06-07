@@ -5,6 +5,7 @@ bool opendoor=false; // door close
 short elevator=1;
 active proctype floor1()
 {
+	state[0]=false;
 	do
 	::if
 	::(state[0]==false)->
@@ -18,6 +19,8 @@ active proctype floor1()
 }
 active proctype floor2()
 {
+
+	state[1]=false;
 	do
 	::if
 	::(state[1]==false)->
@@ -30,6 +33,8 @@ active proctype floor2()
 }
 active proctype floor3()
 {
+
+	state[2]=false;
 	do
 	::if
 		::(state[2]==false)->
@@ -67,7 +72,7 @@ active proctype controller()
 				elevator++};
 			fi
 		od
-	::skip
+	// ::skip
 	od
 }
 
@@ -83,6 +88,15 @@ active proctype controller()
 	run floor1();run floor2(); run floor3();run controller();
 }*/
 
+	
 /*Whenever the cabin is moving the door must be closed.*/
-
-ltl p2 {[]( (controller@ismoving -> !opendoor))}
+ltl p2 {[]( (controller@ismoving -> opendoor))}
+//3. A button cannot remain pressed forever.
+ltl p3{!(<>[] (state[0]==true)) || (<>[] (state[1]==true)) || (<>[] (state[2]==true))}
+/*4. The door cannot remain open forever. -- door can remain open forever stands for -> door is infinitely many times open (it indicates that from a point door is 
+always open)*/
+ltl p4{![]<>opendoor}
+ltl p41{[]<>! controller@doorclosed}
+//5. The door cannot remain closed forever.
+ltl p5{[]<>!opendoor}
+ltl p51{[]<>! controller@dooropened}
