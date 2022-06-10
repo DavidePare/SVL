@@ -3,33 +3,7 @@ chan c = [FLOOR] of {byte};
 bool state[FLOOR];
 bool opendoor=false; // door close
 short elevator=1;
-bool standing;
-
-
-active proctype floorButtons()
-{
-	state[0]=false;
-	state[1]=false;
-	state[2]=false;
-	do
-		::if
-			::(state[0]==false)->
-				::buttonOnePressed:
-					atomic{c!1;state[0]=true;}
-				//::skip; "a button cannot remain not pressed forever"
-			::(state[1]==false)->
-				::buttonTwoPressed:
-					atomic{c!2; state[1]=true;}
-				//::skip;
-			::(state[2]==false)->
-				::buttonThreePressed:
-					atomic{c!3; state[2]=true};
-				//::skip;
-		fi
-	od
-}
-
-/*active proctype floor1()
+active proctype floor1()
 {
 	state[0]=false;
 	do
@@ -70,7 +44,7 @@ active proctype floor3()
 			skip;
 	fi
 	od
-}*/
+}
 
 
 
@@ -82,35 +56,45 @@ active proctype controller()
 		movelevator:
 		do
 			::if
-			::(piano==elevator)-> 
-				standing=true;
+			::atomic{(piano==elevator)-> 
 				dooropened:
-					opendoor=true;
+				opendoor=true;
 				doorclosed:
-					atomic{ opendoor=false;
-					state[piano-1]=false;
-					break;} //here open and close door
-			::(piano<elevator)->
-				standing=false;
-				down: 
-					elevator--;
-			::(piano>elevator)->
-				standing=false;
-				up:
-					elevator++;
+				opendoor=false;
+				state[piano-1]=false;
+				break;
+			} //here open and close door
+			::atomic { (piano<elevator)->
+				ismoving:
+				elevator--};
+			::atomic{ (piano>elevator)->
+				ismoving:
+				elevator++};
 			fi
 		od
 	// ::skip
 	od
 }
 
+/*init
+{
+	atomic{
+		int i;
+		for (i : 0 .. FLOOR) {
+			state[i]==false;
+		}
+	}
+	
+	run floor1();run floor2(); run floor3();run controller();
+}*/
+
 	
 /* Whenever the door is open the cabin must be standing */
-//ltl p1 {[] (opendoor -> !controller@ismoving)}
+ltl p1 {[] (opendoor -> !controller@ismoving)}
 /*Whenever the cabin is moving the door must be closed.*/
-//ltl p2 {[]( (controller@ismoving -> opendoor))}
+ltl p2 {[]( (controller@ismoving -> opendoor))}
 //3. A button cannot remain pressed forever.
-//ltl p3{<>[]state[0]==true || <>[]state[1]==true || <>[]state[2]==true}
+ltl p3{<>[]state[0]==true || <>[]state[1]==true || <>[]state[2]==true}
 /*4. The door cannot remain open forever. -- door can remain open forever stands for -> door is infinitely many times open (it indicates that from a point door is 
 always open)*/
 ltl p4{![]<>opendoor}
