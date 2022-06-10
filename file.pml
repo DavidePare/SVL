@@ -4,7 +4,7 @@ bool state[FLOOR];
 bool opendoor=false; // door close
 short elevator=1;
 bool standing;
-
+short piano;
 
 active proctype floorButtons()
 {
@@ -14,15 +14,15 @@ active proctype floorButtons()
 	do
 		::if
 			::(state[0]==false)->
-				::buttonOnePressed:
+				buttonOnePressed:
 					atomic{c!1;state[0]=true;}
 				//::skip; "a button cannot remain not pressed forever"
 			::(state[1]==false)->
-				::buttonTwoPressed:
+				buttonTwoPressed:
 					atomic{c!2; state[1]=true;}
 				//::skip;
 			::(state[2]==false)->
-				::buttonThreePressed:
+				buttonThreePressed:
 					atomic{c!3; state[2]=true};
 				//::skip;
 		fi
@@ -76,7 +76,7 @@ active proctype floor3()
 
 active proctype controller()
 {
-	short piano;
+	
 	do
 	::c?piano;
 		movelevator:
@@ -106,18 +106,23 @@ active proctype controller()
 
 	
 /* Whenever the door is open the cabin must be standing */
+ltl p1 {[] (opendoor -> standing)}
 //ltl p1 {[] (opendoor -> !controller@ismoving)}
 /*Whenever the cabin is moving the door must be closed.*/
+ltl p2 {[]((controller@down || controller@up) -> !opendoor)}
 //ltl p2 {[]( (controller@ismoving -> opendoor))}
 //3. A button cannot remain pressed forever.
+ltl p3 {!(<>[]state[0]==true || <>[]state[1]==true || <>[]state[2]==true)}
 //ltl p3{<>[]state[0]==true || <>[]state[1]==true || <>[]state[2]==true}
 /*4. The door cannot remain open forever. -- door can remain open forever stands for -> door is infinitely many times open (it indicates that from a point door is 
 always open)*/
-ltl p4{![]<>opendoor}
+ltl p4{[]<>!opendoor}
 ltl p41{[]<>! controller@doorclosed}
 //5. The door cannot remain closed forever.
-ltl p5{[]<>!opendoor}
+ltl p5{[]<>opendoor} // The door is opened infinitely many times
 ltl p51{[]<>! controller@dooropened}
 
 // Whenever the button at floor x (x=1,2,3) becomes pressed then the cabin will eventually be at the fllor x with the door open
-//ltl p6{[]controller@piano ==elevator -> controller@dooropened}
+ltl p6{[]( (piano==elevator &&  state[piano-1])-> <>( controller@dooropened))}
+
+

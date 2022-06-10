@@ -1,0 +1,104 @@
+digraph p_floorButtons {
+size="8,10";
+  GT [shape=box,style=dotted,label="floorButtons"];
+  GT -> S1;
+	S1 -> S2  [color=black,style=bold,label="state[0] = 0"];
+	S2 -> S3  [color=black,style=bold,label="state[1] = 0"];
+	S3 -> S18  [color=black,style=bold,label="state[2] = 0"];
+	S18 -> S7  [color=black,style=bold,label="((state[0]==0))"];
+	S18 -> S11  [color=black,style=bold,label="((state[1]==0))"];
+	S18 -> S15  [color=black,style=bold,label="((state[2]==0))"];
+	S7 -> S6  [color=black,style=dashed,label="c!1"];
+	S6 -> S18  [color=black,style=bold,label="state[0] = 1"];
+	S11 -> S10  [color=black,style=dashed,label="c!2"];
+	S10 -> S18  [color=black,style=bold,label="state[1] = 1"];
+	S15 -> S14  [color=black,style=dashed,label="c!3"];
+	S14 -> S18  [color=black,style=bold,label="state[2] = 1"];
+}
+digraph p_controller {
+size="8,10";
+  GT [shape=box,style=dotted,label="controller"];
+  GT -> S20;
+	S20 -> S17  [color=black,style=bold,label="c?piano"];
+	S17 -> S3  [color=black,style=bold,label="((piano==elevator))"];
+	S17 -> S10  [color=black,style=bold,label="((piano<elevator))"];
+	S17 -> S13  [color=black,style=bold,label="((piano>elevator))"];
+	S3 -> S4  [color=black,style=bold,label="standing = 1"];
+	S4 -> S8  [color=black,style=bold,label="opendoor = 1"];
+	S8 -> S6  [color=black,style=dashed,label="opendoor = 0"];
+	S6 -> S7  [color=black,style=dashed,label="state[(piano-1)] = 0"];
+	S7 -> S20  [color=black,style=bold,label="goto :b2"];
+	S10 -> S11  [color=black,style=bold,label="standing = 0"];
+	S11 -> S17  [color=black,style=bold,label="elevator = (elevator-1)"];
+	S13 -> S14  [color=black,style=bold,label="standing = 0"];
+	S14 -> S17  [color=black,style=bold,label="elevator = (elevator+1)"];
+}
+digraph claim_p1 {
+size="8,10";
+  GT [shape=box,style=dotted,label="p1"];
+  GT -> S6;
+	S6 -> S2  [color=black,style=dashed,label="(!((!(opendoor)||standing)))"];
+	S6 -> S6  [color=black,style=bold,label="(1)"];
+	S2 -> S6  [color=black,style=bold,label="assert(!(!((!(opendoor)||standing))))"];
+}
+digraph claim_p2 {
+size="8,10";
+  GT [shape=box,style=dotted,label="p2"];
+  GT -> S6;
+	S6 -> S2  [color=black,style=dashed,label="(!((!(((controller._p==down)||(controller._p==up)))||!(opendoor))))"];
+	S6 -> S6  [color=black,style=bold,label="(1)"];
+	S2 -> S6  [color=black,style=bold,label="assert(!(!((!(((controller._p==down)||(controller._p==up)))||!(opendoor)))))"];
+}
+digraph claim_p3 {
+size="8,10";
+  GT [shape=box,style=dotted,label="p3"];
+  GT -> S4;
+	S4 -> S2  [color=black,style=dashed,label="(!(!((((333==1)||(333==1))||(333==1)))))"];
+  S4 [color=red,style=bold];
+	S2 -> S4  [color=black,style=solid,label="assert(!(!(!((((333==1)||(333==1))||(333==1))))))"];
+}
+digraph claim_p4 {
+size="8,10";
+  GT [shape=box,style=dotted,label="p4"];
+  GT -> S5;
+	S5 -> S10  [color=black,style=bold,label="(!(!(opendoor)))"];
+	S5 -> S5  [color=black,style=bold,label="(1)"];
+	S10 -> S10  [color=black,style=bold,label="(!(!(opendoor)))"];
+  S10 [color=red,style=bold];
+}
+digraph claim_p41 {
+size="8,10";
+  GT [shape=box,style=dotted,label="p41"];
+  GT -> S5;
+	S5 -> S10  [color=black,style=bold,label="(!(!((controller._p==doorclosed))))"];
+	S5 -> S5  [color=black,style=bold,label="(1)"];
+	S10 -> S10  [color=black,style=bold,label="(!(!((controller._p==doorclosed))))"];
+  S10 [color=red,style=bold];
+}
+digraph claim_p5 {
+size="8,10";
+  GT [shape=box,style=dotted,label="p5"];
+  GT -> S5;
+	S5 -> S10  [color=black,style=bold,label="(!(opendoor))"];
+	S5 -> S5  [color=black,style=bold,label="(1)"];
+	S10 -> S10  [color=black,style=bold,label="(!(opendoor))"];
+  S10 [color=red,style=bold];
+}
+digraph claim_p51 {
+size="8,10";
+  GT [shape=box,style=dotted,label="p51"];
+  GT -> S5;
+	S5 -> S10  [color=black,style=bold,label="(!(!((controller._p==dooropened))))"];
+	S5 -> S5  [color=black,style=bold,label="(1)"];
+	S10 -> S10  [color=black,style=bold,label="(!(!((controller._p==dooropened))))"];
+  S10 [color=red,style=bold];
+}
+digraph claim_p6 {
+size="8,10";
+  GT [shape=box,style=dotted,label="p6"];
+  GT -> S5;
+	S5 -> S10  [color=black,style=bold,label="((!(!(((piano==elevator)&&state[(piano-1)])))&&!((controller._p==dooropened))))"];
+	S5 -> S5  [color=black,style=bold,label="(1)"];
+	S10 -> S10  [color=black,style=bold,label="(!((controller._p==dooropened)))"];
+  S10 [color=red,style=bold];
+}

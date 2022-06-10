@@ -1,12 +1,39 @@
-never p4 {    /* !(! ([] (<> (opendoor)))) */
+never p1 {    /* !([] ((! (opendoor)) || (standing))) */
 T0_init:
 	do
-	:: ((opendoor)) -> goto accept_S9
+	:: atomic { (! (((! (opendoor)) || (standing)))) -> assert(!(! (((! (opendoor)) || (standing))))) }
 	:: (1) -> goto T0_init
 	od;
-accept_S9:
+accept_all:
+	skip
+}
+never p2 {    /* !([] ((! (((controller@down)) || ((controller@up)))) || (! (opendoor)))) */
+T0_init:
 	do
+	:: atomic { (! (((! (((controller@down)) || ((controller@up)))) || (! (opendoor))))) -> assert(!(! (((! (((controller@down)) || ((controller@up)))) || (! (opendoor)))))) }
 	:: (1) -> goto T0_init
+	od;
+accept_all:
+	skip
+}
+never p3 {    /* !(! ((((333==1)) || ((333==1))) || ((333==1)))) */
+accept_init:
+T0_init:
+	do
+	:: atomic { (! ((! ((((333==1)) || ((333==1))) || ((333==1)))))) -> assert(!(! ((! ((((333==1)) || ((333==1))) || ((333==1))))))) }
+	od;
+accept_all:
+	skip
+}
+never p4 {    /* !([] (<> (! (opendoor)))) */
+T0_init:
+	do
+	:: (! ((! (opendoor)))) -> goto accept_S4
+	:: (1) -> goto T0_init
+	od;
+accept_S4:
+	do
+	:: (! ((! (opendoor)))) -> goto accept_S4
 	od;
 }
 never p41 {    /* !([] (<> (! ((controller@doorclosed))))) */
@@ -20,15 +47,15 @@ accept_S4:
 	:: (! ((! ((controller@doorclosed))))) -> goto accept_S4
 	od;
 }
-never p5 {    /* !([] (<> (! (opendoor)))) */
+never p5 {    /* !([] (<> (opendoor))) */
 T0_init:
 	do
-	:: (! ((! (opendoor)))) -> goto accept_S4
+	:: (! ((opendoor))) -> goto accept_S4
 	:: (1) -> goto T0_init
 	od;
 accept_S4:
 	do
-	:: (! ((! (opendoor)))) -> goto accept_S4
+	:: (! ((opendoor))) -> goto accept_S4
 	od;
 }
 never p51 {    /* !([] (<> (! ((controller@dooropened))))) */
@@ -40,5 +67,16 @@ T0_init:
 accept_S4:
 	do
 	:: (! ((! ((controller@dooropened))))) -> goto accept_S4
+	od;
+}
+never p6 {    /* !([] ((! (((piano==elevator)) && (state[(piano-1)]))) || (<> ((controller@dooropened))))) */
+T0_init:
+	do
+	:: (! ((! (((piano==elevator)) && (state[(piano-1)])))) && ! (((controller@dooropened)))) -> goto accept_S4
+	:: (1) -> goto T0_init
+	od;
+accept_S4:
+	do
+	:: (! (((controller@dooropened)))) -> goto accept_S4
 	od;
 }
