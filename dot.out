@@ -1,0 +1,15 @@
+digraph p_controller {
+size="8,10";
+  GT [shape=box,style=dotted,label="controller"];
+  GT -> S19;
+	S19 -> S16  [color=black,style=bold,label="c?piano"];
+	S16 -> S3  [color=black,style=dashed,label="((piano==elevator))"];
+	S16 -> S9  [color=black,style=dashed,label="((piano<elevator))"];
+	S16 -> S12  [color=black,style=dashed,label="((piano>elevator))"];
+	S3 -> S4  [color=black,style=dashed,label="opendoor = 1"];
+	S4 -> S5  [color=black,style=dashed,label="opendoor = 0"];
+	S5 -> S6  [color=black,style=dashed,label="state[(piano-1)] = 0"];
+	S6 -> S19  [color=black,style=bold,label="goto :b4"];
+	S9 -> S16  [color=black,style=bold,label="elevator = (elevator-1)"];
+	S12 -> S16  [color=black,style=bold,label="elevator = (elevator+1)"];
+}

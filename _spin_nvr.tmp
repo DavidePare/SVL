@@ -1,3 +1,12 @@
+never p1 {    /* !([] ((! (opendoor)) || (! ((controller@ismoving))))) */
+T0_init:
+	do
+	:: atomic { (! (((! (opendoor)) || (! ((controller@ismoving)))))) -> assert(!(! (((! (opendoor)) || (! ((controller@ismoving))))))) }
+	:: (1) -> goto T0_init
+	od;
+accept_all:
+	skip
+}
 never p2 {    /* !([] ((! ((controller@ismoving))) || (opendoor))) */
 T0_init:
 	do
@@ -7,29 +16,14 @@ T0_init:
 accept_all:
 	skip
 }
-never p3 {    /* !(((! (<> ([] ((state[0]==1))))) || (<> ([] ((state[1]==1))))) || (<> ([] ((state[2]==1))))) */
+never p3 {    /* !((((333==1)) || ((333==1))) || ((333==1))) */
+accept_init:
 T0_init:
 	do
-	:: (! (((state[1]==1))) && ! (((state[2]==1))) && ((state[0]==1))) -> goto accept_S637
-	:: (! (((state[1]==1))) && ((state[0]==1))) -> goto T2_S637
-	:: (((state[0]==1))) -> goto T0_S637
-	:: (1) -> goto T0_init
+	:: atomic { (! (((((333==1)) || ((333==1))) || ((333==1))))) -> assert(!(! (((((333==1)) || ((333==1))) || ((333==1)))))) }
 	od;
-accept_S637:
-	do
-	:: (((state[0]==1))) -> goto T0_S637
-	od;
-T2_S637:
-	do
-	:: (! (((state[2]==1))) && ((state[0]==1))) -> goto accept_S637
-	:: (((state[0]==1))) -> goto T2_S637
-	od;
-T0_S637:
-	do
-	:: (! (((state[1]==1))) && ! (((state[2]==1))) && ((state[0]==1))) -> goto accept_S637
-	:: (! (((state[1]==1))) && ((state[0]==1))) -> goto T2_S637
-	:: (((state[0]==1))) -> goto T0_S637
-	od;
+accept_all:
+	skip
 }
 never p4 {    /* !(! ([] (<> (opendoor)))) */
 T0_init:
