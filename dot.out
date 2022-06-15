@@ -1,0 +1,15 @@
+digraph claim_p3 {
+size="8,10";
+  GT [shape=box,style=dotted,label="p3"];
+  GT -> S9;
+	S9 -> S14  [color=black,style=bold,label="(!(!(state[2])))"];
+	S9 -> S19  [color=black,style=bold,label="(!(!(state[1])))"];
+	S9 -> S24  [color=black,style=bold,label="(!(!(state[0])))"];
+	S9 -> S9  [color=black,style=bold,label="(1)"];
+	S14 -> S14  [color=black,style=bold,label="(!(!(state[2])))"];
+  S14 [color=red,style=bold];
+	S19 -> S19  [color=black,style=bold,label="(!(!(state[1])))"];
+  S19 [color=red,style=bold];
+	S24 -> S24  [color=black,style=bold,label="(!(!(state[0])))"];
+  S24 [color=red,style=bold];
+}
