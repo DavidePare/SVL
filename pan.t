@@ -1455,114 +1455,114 @@ settable(void)
 
 	trans[1][21]	= settr(41,0,20,1,0,".(goto)", 0, 2, 0);
 	T = trans[1][20] = settr(40,0,0,0,0,"DO", 0, 2, 0);
-		/* file.pml:36 */
+		/* ParenteDavideProject.pml:36 */
 	    T->nxt	= settr(40,0,1,0,0,"DO", 0, 2, 0);
-		/* file.pml:36 */
+		/* ParenteDavideProject.pml:36 */
 	trans[1][1]	= settr(21,0,17,230,230,"c?piano", 1, 503, 0);
-		tr_2_src(230, "file.pml", 37);
+		tr_2_src(230, "ParenteDavideProject.pml", 37);
 	trans[1][18]	= settr(38,0,17,1,0,".(goto)", 0, 2, 0);
 	T = trans[1][17] = settr(37,0,0,0,0,"DO", 0, 2, 0);
-		/* file.pml:39 */
+		/* ParenteDavideProject.pml:39 */
 	    T->nxt	= settr(37,0,15,0,0,"DO", 0, 2, 0);
-		/* file.pml:39 */
+		/* ParenteDavideProject.pml:39 */
 	T = trans[1][15] = settr(35,0,0,0,0,"IF", 0, 2, 0);
-		/* file.pml:40 */
+		/* ParenteDavideProject.pml:40 */
 	T = T->nxt	= settr(35,0,2,0,0,"IF", 0, 2, 0);
-		/* file.pml:40 */
+		/* ParenteDavideProject.pml:40 */
 	T = T->nxt	= settr(35,0,9,0,0,"IF", 0, 2, 0);
-		/* file.pml:40 */
+		/* ParenteDavideProject.pml:40 */
 	    T->nxt	= settr(35,0,12,0,0,"IF", 0, 2, 0);
-		/* file.pml:40 */
+		/* ParenteDavideProject.pml:40 */
 	trans[1][2]	= settr(22,0,3,231,0,"((piano==elevator))", 1, 2, 0);
-		tr_2_src(231, "file.pml", 41);
+		tr_2_src(231, "ParenteDavideProject.pml", 41);
 	trans[1][3]	= settr(23,0,4,232,232,"standing = 1", 1, 2, 0);
-		tr_2_src(232, "file.pml", 42);
+		tr_2_src(232, "ParenteDavideProject.pml", 42);
 	trans[1][4]	= settr(24,0,8,233,233,"opendoor = 1", 1, 2, 0);
-		tr_2_src(233, "file.pml", 44);
+		tr_2_src(233, "ParenteDavideProject.pml", 44);
 	T = trans[ 1][8] = settr(28,2,0,0,0,"ATOMIC", 1, 2, 0);
-		/* file.pml:46 */
+		/* ParenteDavideProject.pml:46 */
 	T->nxt	= settr(28,2,5,0,0,"ATOMIC", 1, 2, 0);
-		/* file.pml:46 */
+		/* ParenteDavideProject.pml:46 */
 	trans[1][5]	= settr(25,2,6,234,234,"opendoor = 0", 1, 2, 0);
-		tr_2_src(234, "file.pml", 46);
+		tr_2_src(234, "ParenteDavideProject.pml", 46);
 	trans[1][6]	= settr(26,2,7,235,235,"state[(piano-1)] = 0", 1, 2, 0);
-		tr_2_src(235, "file.pml", 47);
+		tr_2_src(235, "ParenteDavideProject.pml", 47);
 	trans[1][7]	= settr(27,0,20,1,0,"goto :b2", 1, 2, 0);
 	trans[1][16]	= settr(36,0,17,1,0,".(goto)", 0, 2, 0);
 	trans[1][9]	= settr(29,0,10,236,0,"((piano<elevator))", 1, 2, 0);
-		tr_2_src(236, "file.pml", 49);
+		tr_2_src(236, "ParenteDavideProject.pml", 49);
 	trans[1][10]	= settr(30,0,11,237,237,"standing = 0", 1, 2, 0);
-		tr_2_src(237, "file.pml", 50);
+		tr_2_src(237, "ParenteDavideProject.pml", 50);
 	trans[1][11]	= settr(31,0,17,238,238,"elevator = (elevator-1)", 1, 2, 0);
-		tr_2_src(238, "file.pml", 52);
+		tr_2_src(238, "ParenteDavideProject.pml", 52);
 	trans[1][12]	= settr(32,0,13,239,0,"((piano>elevator))", 1, 2, 0);
-		tr_2_src(239, "file.pml", 53);
+		tr_2_src(239, "ParenteDavideProject.pml", 53);
 	trans[1][13]	= settr(33,0,14,240,240,"standing = 0", 1, 2, 0);
-		tr_2_src(240, "file.pml", 54);
+		tr_2_src(240, "ParenteDavideProject.pml", 54);
 	trans[1][14]	= settr(34,0,17,241,241,"elevator = (elevator+1)", 1, 2, 0);
-		tr_2_src(241, "file.pml", 56);
+		tr_2_src(241, "ParenteDavideProject.pml", 56);
 	trans[1][19]	= settr(39,0,20,1,0,"break", 0, 2, 0);
 	trans[1][22]	= settr(42,0,23,1,0,"break", 0, 2, 0);
 	trans[1][23]	= settr(43,0,0,242,242,"-end-", 0, 3500, 0);
-		tr_2_src(242, "file.pml", 60);
+		tr_2_src(242, "ParenteDavideProject.pml", 60);
 
 	/* proctype 0: floorButtons */
 
 	trans[0] = (Trans **) emalloc(22*sizeof(Trans *));
 
 	trans[0][1]	= settr(0,0,2,243,243,"state[0] = 0", 1, 2, 0);
-		tr_2_src(243, "file.pml", 12);
+		tr_2_src(243, "ParenteDavideProject.pml", 12);
 	trans[0][2]	= settr(1,0,3,244,244,"state[1] = 0", 1, 2, 0);
-		tr_2_src(244, "file.pml", 13);
+		tr_2_src(244, "ParenteDavideProject.pml", 13);
 	trans[0][3]	= settr(2,0,18,245,245,"state[2] = 0", 1, 2, 0);
-		tr_2_src(245, "file.pml", 14);
+		tr_2_src(245, "ParenteDavideProject.pml", 14);
 	trans[0][19]	= settr(18,0,18,1,0,".(goto)", 0, 2, 0);
 	T = trans[0][18] = settr(17,0,0,0,0,"DO", 0, 2, 0);
-		/* file.pml:15 */
+		/* ParenteDavideProject.pml:15 */
 	    T->nxt	= settr(17,0,16,0,0,"DO", 0, 2, 0);
-		/* file.pml:15 */
+		/* ParenteDavideProject.pml:15 */
 	T = trans[0][16] = settr(15,0,0,0,0,"IF", 0, 2, 0);
-		/* file.pml:16 */
+		/* ParenteDavideProject.pml:16 */
 	T = T->nxt	= settr(15,0,4,0,0,"IF", 0, 2, 0);
-		/* file.pml:16 */
+		/* ParenteDavideProject.pml:16 */
 	T = T->nxt	= settr(15,0,8,0,0,"IF", 0, 2, 0);
-		/* file.pml:16 */
+		/* ParenteDavideProject.pml:16 */
 	    T->nxt	= settr(15,0,12,0,0,"IF", 0, 2, 0);
-		/* file.pml:16 */
+		/* ParenteDavideProject.pml:16 */
 	trans[0][4]	= settr(3,0,7,246,0,"((state[0]==0))", 1, 2, 0);
-		tr_2_src(246, "file.pml", 17);
+		tr_2_src(246, "ParenteDavideProject.pml", 17);
 	T = trans[ 0][7] = settr(6,2,0,0,0,"ATOMIC", 1, 2, 0);
-		/* file.pml:19 */
+		/* ParenteDavideProject.pml:19 */
 	T->nxt	= settr(6,2,5,0,0,"ATOMIC", 1, 3, 0);
-		/* file.pml:19 */
+		/* ParenteDavideProject.pml:19 */
 	trans[0][5]	= settr(4,2,6,247,247,"c!1", 1, 3, 0);
-		tr_2_src(247, "file.pml", 19);
+		tr_2_src(247, "ParenteDavideProject.pml", 19);
 	trans[0][6]	= settr(5,0,18,248,248,"state[0] = 1", 1, 3, 0);
-		tr_2_src(248, "file.pml", 19);
+		tr_2_src(248, "ParenteDavideProject.pml", 19);
 	trans[0][17]	= settr(16,0,18,1,0,".(goto)", 0, 2, 0);
 	trans[0][8]	= settr(7,0,11,249,0,"((state[1]==0))", 1, 2, 0);
-		tr_2_src(249, "file.pml", 20);
+		tr_2_src(249, "ParenteDavideProject.pml", 20);
 	T = trans[ 0][11] = settr(10,2,0,0,0,"ATOMIC", 1, 2, 0);
-		/* file.pml:22 */
+		/* ParenteDavideProject.pml:22 */
 	T->nxt	= settr(10,2,9,0,0,"ATOMIC", 1, 3, 0);
-		/* file.pml:22 */
+		/* ParenteDavideProject.pml:22 */
 	trans[0][9]	= settr(8,2,10,250,250,"c!2", 1, 3, 0);
-		tr_2_src(250, "file.pml", 22);
+		tr_2_src(250, "ParenteDavideProject.pml", 22);
 	trans[0][10]	= settr(9,0,18,251,251,"state[1] = 1", 1, 3, 0);
-		tr_2_src(251, "file.pml", 22);
+		tr_2_src(251, "ParenteDavideProject.pml", 22);
 	trans[0][12]	= settr(11,0,15,252,0,"((state[2]==0))", 1, 2, 0);
-		tr_2_src(252, "file.pml", 23);
+		tr_2_src(252, "ParenteDavideProject.pml", 23);
 	T = trans[ 0][15] = settr(14,2,0,0,0,"ATOMIC", 1, 2, 0);
-		/* file.pml:25 */
+		/* ParenteDavideProject.pml:25 */
 	T->nxt	= settr(14,2,13,0,0,"ATOMIC", 1, 3, 0);
-		/* file.pml:25 */
+		/* ParenteDavideProject.pml:25 */
 	trans[0][13]	= settr(12,2,14,253,253,"c!3", 1, 3, 0);
-		tr_2_src(253, "file.pml", 25);
+		tr_2_src(253, "ParenteDavideProject.pml", 25);
 	trans[0][14]	= settr(13,0,18,254,254,"state[2] = 1", 1, 3, 0);
-		tr_2_src(254, "file.pml", 25);
+		tr_2_src(254, "ParenteDavideProject.pml", 25);
 	trans[0][20]	= settr(19,0,21,1,0,"break", 0, 2, 0);
 	trans[0][21]	= settr(20,0,0,255,255,"-end-", 0, 3500, 0);
-		tr_2_src(255, "file.pml", 28);
+		tr_2_src(255, "ParenteDavideProject.pml", 28);
 	/* np_ demon: */
 	trans[_NP_] = (Trans **) emalloc(3*sizeof(Trans *));
 	T = trans[_NP_][0] = settr(9997,0,1,_T5,0,"(np_)", 1,2,0);
