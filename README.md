@@ -44,11 +44,11 @@ this program.
     ![Button 3 pressed. state\[0\],state\[1\]= false;
     state\[2\]=true;](images/bottonThreePressed.png)
 
-    \
+    
     In this specific case someone pressed the button on floor Three and
-    the elevator will go to this specific floor.\
+    the elevator will go to this specific floor.
     Another example would be with all buttons pressed. In this case, the
-    lift must respect the queue order.\
+    lift must respect the queue order.
 
     ![state\[0\],state\[1\],state\[2\]=true;
     c=\[2,1,3\]](images/allButtonPressed.png)
@@ -80,9 +80,9 @@ this program.
             short piano;
 
 After having indicated the variables, it is necessary to understand the
-two prototypes.\
+two prototypes.
 We have the class floorButtons that indicate the behaviour of the button
-that could be chosen in a non-deterministic way.\
+that could be chosen in a non-deterministic way.
 
 <div align="center">
 ![image](images/floorButtonClass.png)
@@ -92,37 +92,31 @@ First of all, it puts all the buttons unpressed next it enters a loop
 where in a non-deterministic way chooses the button to press. If a
 button is already pressed it can't be pressed again, in fact before
 entering in the label *buttonXPressed* there is an *if* condition that
-checks if the button is already pressed.\
+checks if the button is already pressed.
 The action in all the labels is set like an atomic option because the
-operations must be done atomically and at the same time.\
+operations must be done atomically and at the same time.
 When the button is pressed, the piano selected by the button is added to
-channel c.\
-The automa generated is:\
+channel c.
+The automa generated is:
 
-<div align="center">
 ![image](images/floorAutome.png)
-    </div>
 
 Furthermore, a controller has been developed which has the purpose of
 reading from channel c the floor where the lift must go. Then you will
 enter a loop until the elevator reaches the floor read by channel c. If
 you need to enter and change the floor, the variable elevator will be
-modified so that it can reach the established floor.\
+modified so that it can reach the established floor.
 
-<div align="center">
 ![image](images/ControllerClass.png)
-    </div>
 
-The automa generated is:\
+The automa generated is:
 
-<div align="center">
 ![image](images/controllerAutoma.png)
-</div>
 
 The state *S20* have the scope of read from the channel c the value of
-the floor where to go.\
+the floor where to go.
 The state *S17* check where the elevator has to go, if it is already on
-the correct floor or if it has to go up.\
+the correct floor or if it has to go up.
 
 # LTL formalization
 
@@ -161,7 +155,7 @@ the correct floor or if it has to go up.\
     the door open.
     ![image](images/f1.png)
     the rule was written for every possible pair of floors. To be exact,
-    the order of the pairs is: 1.2; 1.3; 2.1; 2.3; 3.1; 3.2.\
+    the order of the pairs is: 1.2; 1.3; 2.1; 2.3; 3.1; 3.2.
     Initially, it is checked that each button is not pressed, then it is
     checked that first one button is pressed and then the other. In the
     second part after the implication it is simply checked that the
@@ -170,7 +164,7 @@ the correct floor or if it has to go up.\
 
 # Conclusion
 
-Running all the properties together doesn't find some type of error.\
+Running all the properties together doesn't find some type of error.
 
 ![image](images/f2.png)
 
