@@ -6,12 +6,11 @@ an *"elevator\"* that consists a lift which would be the variable that
 identifies the floor where the cabin is located at a specific moment of
 the execution, it has also the behaviour of the cabin so it can move in
 the different floors. Also, the system is developed for the management
-of 3 different floors.\
-Below this short description is possible to see an example of this.\
+of 3 different floors.
+Below this short description is possible to see an example of this.
 
-<div align="center">
 ![image](images/lift_elevatorFirstpicture.png)
-</div>
+
 
 
 As we can see there are three specific floors with the respective button
@@ -30,11 +29,9 @@ this program.
 
             chan c = [FLOOR] of {byte};
 
-    A simple interactive run shows us how this channel works.\
+    A simple interactive run shows us how this channel works.
 
-    <div align="center">
         ![image](images/runChan.png)
-    </div>
 
 -   The variable state is declared in this way:
 
@@ -120,7 +117,7 @@ The automa generated is:\
 
 <div align="center">
 ![image](images/controllerAutoma.png)
-    </div>
+</div>
 
 The state *S20* have the scope of read from the channel c the value of
 the floor where to go.\
@@ -175,9 +172,7 @@ the correct floor or if it has to go up.\
 
 Running all the properties together doesn't find some type of error.\
 
-<div align="center">
 ![image](images/f2.png)
-    </div>
 
 The building of the project could require some seconds because the last
 LTL property is heavy. All the properties are checked in a few seconds
