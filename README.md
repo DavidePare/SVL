@@ -11,7 +11,7 @@ Below this short description is possible to see an example of this.\
 
 <div align="center">
 ![image](images/lift_elevatorFirstpicture.png)
-    </div>
+</div>
 
 
 As we can see there are three specific floors with the respective button
@@ -33,7 +33,7 @@ this program.
     A simple interactive run shows us how this channel works.\
 
     <div align="center">
-    ![image](images/runChan.png)
+        ![image](images/runChan.png)
     </div>
 
 -   The variable state is declared in this way:
