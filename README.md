@@ -9,9 +9,10 @@ the different floors. Also, the system is developed for the management
 of 3 different floors.\
 Below this short description is possible to see an example of this.\
 
-::: center
+<div align="center">
 ![image](images/lift_elevatorFirstpicture.png)
-:::
+    </div>
+
 
 As we can see there are three specific floors with the respective button
 and the lift at this specific moment is on floor 1.
@@ -31,9 +32,9 @@ this program.
 
     A simple interactive run shows us how this channel works.\
 
-    ::: center
+    <div align="center">
     ![image](images/runChan.png)
-    :::
+    </div>
 
 -   The variable state is declared in this way:
 
@@ -86,9 +87,9 @@ two prototypes.\
 We have the class floorButtons that indicate the behaviour of the button
 that could be chosen in a non-deterministic way.\
 
-::: center
+<div align="center">
 ![image](images/floorButtonClass.png)
-:::
+</div>
 
 First of all, it puts all the buttons unpressed next it enters a loop
 where in a non-deterministic way chooses the button to press. If a
@@ -101,9 +102,9 @@ When the button is pressed, the piano selected by the button is added to
 channel c.\
 The automa generated is:\
 
-::: center
+<div align="center">
 ![image](images/floorAutome.png)
-:::
+    </div>
 
 Furthermore, a controller has been developed which has the purpose of
 reading from channel c the floor where the lift must go. Then you will
@@ -111,15 +112,15 @@ enter a loop until the elevator reaches the floor read by channel c. If
 you need to enter and change the floor, the variable elevator will be
 modified so that it can reach the established floor.\
 
-::: center
+<div align="center">
 ![image](images/ControllerClass.png)
-:::
+    </div>
 
 The automa generated is:\
 
-::: center
+<div align="center">
 ![image](images/controllerAutoma.png)
-:::
+    </div>
 
 The state *S20* have the scope of read from the channel c the value of
 the floor where to go.\
@@ -174,9 +175,9 @@ the correct floor or if it has to go up.\
 
 Running all the properties together doesn't find some type of error.\
 
-::: center
+<div align="center">
 ![image](images/f2.png)
-:::
+    </div>
 
 The building of the project could require some seconds because the last
 LTL property is heavy. All the properties are checked in a few seconds
